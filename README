@@ -29,11 +29,15 @@ serviceType: Virtual_Infrastructure
 	JSON
 	MIME::Base64
 
+    Additional modules for the CGI version:
+        Net::IPv4Addr
+	CGI
+
 *** Pre-Install: ***
     For ubuntu distributions:
 	sudo apt-get update && \
-	sudo apt-get install librest-client-perl libjson-perl libdata-dump-perl libmime-base64-perl libgetopt-long-descriptive-perl
+	sudo apt-get install librest-client-perl libjson-perl libdata-dump-perl libmime-base64-perl libgetopt-long-descriptive-perl libnetwork-ipv4addr-perl libcgi-pm-perl
 
     For manual CPAN:
-	cpan -I Getopt::Long REST::Client JSON MIME::Base64
+	cpan -I Getopt::Long REST::Client JSON MIME::Base64 Net::IPv4Addr CGI
 
