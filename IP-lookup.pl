@@ -12,8 +12,8 @@ my $username, $password, $ipaddr, $mask, $client, $headers, $query, $basequery;
 my(%opt) = (
         mask		=> 0,
         maxmask		=> 16,
-        user		=> "",
-	pass		=> "",
+        username	=> $ENV{USER},
+	password	=> "",
 	host		=> "localhost",
 	port		=> 8993,	# Incognito IPSM API port default
         usage		=> 0,
@@ -59,7 +59,7 @@ sub usage {
         $OPTIONS .= "\t-m, --mask\t\t CIDR bitmask\n";
         $OPTIONS .= "\t-x, --maxmask\t\t upper limit of CIDR search (/$opt{maxmask} - /32)\n";
         $OPTIONS .= "\t-s, --search\t\t work around broken search API\n";
-        $OPTIONS .= "\t-u, --username [user]\t authentication-user\n";
+        $OPTIONS .= "\t-u, --username [user]\t authentication-user (default env user: $opt{username})\n";
         $OPTIONS .= "\t-p, --password [pass]\t authentication-secret\n";
         $OPTIONS .= "\t-H, --host [hostname]\t API host (defaults to $opt{host})\n";
         $OPTIONS .= "\t-P, --port [port]\t API port (defaults to $opt{port})\n";
@@ -88,13 +88,9 @@ if (defined($ARGV[0])) {
 
 if (defined($opt{username})) {
 	$username = $opt{username};
-} else {
-	$username = $ENV{USER};
 }
 if (defined($opt{password})) {
 	$password = $opt{password};
-} else {
-	$password = '';
 }
 if (defined($opt{mask})) {
 	$mask=$opt{mask};
