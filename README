@@ -1,4 +1,4 @@
-''' IP-Lookup.pl '''
+*** IP-Lookup.pl ***
 
 Usage: ./IP-lookup.pl {options} [ip/subnet]
         -m, --mask               CIDR bitmask
@@ -22,14 +22,14 @@ serviceType: Virtual_Infrastructure
      status: ASSIGNED
 
 
-'''Prerequisites:'''
+*** Prerequisites: ***
     The following perl modules are required:
 	Getopt::Long
 	REST::Client
 	JSON
 	MIME::Base64
 
-'''Pre-Install:'''
+*** Pre-Install: ***
     For ubuntu distributions:
 	sudo apt-get update && \
 	sudo apt-get install librest-client-perl libjson-perl libdata-dump-perl libmime-base64-perl libgetopt-long-descriptive-perl
