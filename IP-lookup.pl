@@ -130,7 +130,6 @@ if (defined($opt{search}) && ($opt{search} > 0)) {
 	}
 
 	do_query ($query);
-
-	#if we get here, nothing was returned
-	print "...nothing found\n";
 }
+#if we get here, nothing was returned
+print "...nothing found\n";
