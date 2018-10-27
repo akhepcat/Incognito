@@ -4,7 +4,7 @@ Usage: ./IP-lookup.pl {options} [ip/subnet]
         -m, --mask               CIDR bitmask
         -x, --maxmask            upper limit of CIDR search (/16 - /32)
         -s, --search             work around broken search API
-        -u, --username [user]    authentication-user
+        -u, --username [user]    authentication-user (default env user: USERID)
         -p, --password [pass]    authentication-secret
         -H, --host [hostname]    API host (defaults to localhost)
         -P, --port [port]        API port (defaults to 8993)
