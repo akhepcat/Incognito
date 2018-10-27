@@ -4,8 +4,6 @@ use REST::Client;
 use JSON;
 use Socket qw(AF_INET AF_INET6 inet_pton inet_ntop inet_aton inet_ntoa);
 use MIME::Base64;
-#use Data::Dumper;
-#use Scalar::Util qw(reftype);
 
 my $username, $password, $ipaddr, $mask, $client, $headers, $query, $basequery;
 
@@ -47,6 +45,7 @@ sub do_query($) {
 		print "serviceType: $svch->{'name'}\n";
 		print "    IP type: $results->{'type'}\n";
 		print "     status: $results->{'status'}\n";
+		print "RIR netname: $results->{'netname'}\n";
 
 		my $nname = $results->{'netname'};
 
