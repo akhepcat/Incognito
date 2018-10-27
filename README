@@ -1,0 +1,39 @@
+''' IP-Lookup.pl '''
+
+Usage: ./IP-lookup.pl {options} [ip/subnet]
+        -m, --mask               CIDR bitmask
+        -x, --maxmask            upper limit of CIDR search (/16 - /32)
+        -s, --search             work around broken search API
+        -u, --username [user]    authentication-user
+        -p, --password [pass]    authentication-secret
+        -H, --host [hostname]    API host (defaults to localhost)
+        -P, --port [port]        API port (defaults to 8993)
+        -h, --help               this help
+
+This script will query an Incognito IPMS system, using basic API calls, for a netblock or IP, and return basic information.
+It's easily extensible, if you want to see more information.
+
+$ ./IP-lookup.pl -s 192.168.163.210
+ IP network: 192.168.163.208/28
+Description: Virtual cluster for DNS:AWS East:Private Interfaces
+subnetGroup: Amazon_Web_Services
+serviceType: Virtual_Infrastructure
+    IP type: IPV4PRIVATE
+     status: ASSIGNED
+
+
+'''Prerequisites:'''
+    The following perl modules are required:
+	Getopt::Long
+	REST::Client
+	JSON
+	MIME::Base64
+
+'''Pre-Install:'''
+    For ubuntu distributions:
+	sudo apt-get update && \
+	sudo apt-get install librest-client-perl libjson-perl libdata-dump-perl libmime-base64-perl libgetopt-long-descriptive-perl
+
+    For manual CPAN:
+	cpan -I Getopt::Long REST::Client JSON MIME::Base64
+
