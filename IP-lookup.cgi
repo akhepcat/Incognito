@@ -55,8 +55,7 @@ sub do_query($) {
 		print "serviceType: $svch->{'name'}\n";
 		print "    IP type: $results->{'type'}\n";
 		print "     status: $results->{'status'}\n";
-		print "RIR netname: $results->{'netname'}\n";
-	        print "</pre>\n";
+		print "RIR netname: $results->{'netname'}\n" unless ( $results->{'type'} =~ m/PRIVATE/ );
 	        $found = 1;
 	}
 }

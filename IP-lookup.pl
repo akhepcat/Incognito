@@ -5,7 +5,7 @@ use JSON;
 use Socket qw(AF_INET AF_INET6 inet_pton inet_ntop inet_aton inet_ntoa);
 use MIME::Base64;
 
-my $username, $password, $ipaddr, $mask, $client, $headers, $query, $basequery;
+my $username, $password, $ipaddr, $mask, $client, $headers, $query, $basequery, $found;
 
 my(%opt) = (
         mask		=> 0,
@@ -45,7 +45,8 @@ sub do_query($) {
 		print "serviceType: $svch->{'name'}\n";
 		print "    IP type: $results->{'type'}\n";
 		print "     status: $results->{'status'}\n";
-		print "RIR netname: $results->{'netname'}\n";
+		print "RIR netname: $results->{'netname'}\n" unless ( $results->{'type'} =~ m/PRIVATE/ );
+	        $found = 1;
 
 		my $nname = $results->{'netname'};
 
@@ -127,4 +128,4 @@ if (defined($opt{search}) && ($opt{search} > 0)) {
 	do_query ($query);
 }
 #if we get here, nothing was returned
-print "...nothing found\n";
+print "...nothing found\n" unless $found;
