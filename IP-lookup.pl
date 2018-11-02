@@ -76,7 +76,7 @@ sub usage {
 
 GetOptions( \%opt,
         "usage|help|u|h",
-	"search|s",
+	"search|s+",
 	"node|n",
         "mask|m=s",
         "maxmask|x=i",
@@ -115,12 +115,15 @@ $client = REST::Client->new( host => "http://$opt{host}:$opt{port}", );
 $basequery="/subnets?q=(networkAddress EQ";
 
 if (defined($opt{node}) && ($opt{node} > 0)) {
+	print "dbg::node($opt{node}) forcing node-only search\n" if ($opt{debug} >= 1);
 	$basequery="/nodes?q=(address EQ";
 	$opt{mask} = 0;
 	$opt{search} = 0;
 }
 
-if (defined($opt{search}) && ($opt{search} > 0)) {
+if (defined($opt{search}) && ($opt{search} > 1)) {
+	print "dbg::search($opt{search}) Working around broken search api\n" if ($opt{debug} >= 1);
+
 	for ($mask=32;$mask>=$maxmask;$mask--) {
 		my $network; $netmask;
 
@@ -138,6 +141,7 @@ if (defined($opt{search}) && ($opt{search} > 0)) {
 	}
 
 } else {
+	print "dbg::search classic subnet-only search\n" if ($opt{debug} >= 1 && $opt{node} < 1 );
 	if ($mask > 0) {
 		$query = $basequery . qq| $ipaddr) AND (maskSize EQ $mask)|;
 	} else {
